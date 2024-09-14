@@ -23,14 +23,14 @@ const queryClient = new QueryClient();
 export default function App() {
   const router = createBrowserRouter([
     {
-      index: true,
+      path: "/EcommerceRoute/",
       element: <Layout />,
       children: [
-        { path: "/", element: <Register /> },
-        { path: "/register", element: <Register /> },
-        { path: "/login", element: <Login /> },
+        { path: "/EcommerceRoute/", element: <Register /> },
+        { path: "/EcommerceRoute/register", element: <Register /> },
+        { path: "/EcommerceRoute/login", element: <Login /> },
         {
-          path: "/products",
+          path: "/EcommerceRoute/products",
           element: (
             <ProtectedRoute>
               <Products />
@@ -38,7 +38,7 @@ export default function App() {
           ),
         },
         {
-          path: "/brands",
+          path: "/EcommerceRoute/brands",
           element: (
             <ProtectedRoute>
               <Brands />
@@ -46,16 +46,16 @@ export default function App() {
           ),
         },
         {
-          path: "/categories",
+          path: "/EcommerceRoute/categories",
           element: (
             <ProtectedRoute>
               <Categories />
             </ProtectedRoute>
           ),
         },
-        { path: "/ProductDetails/:id", element: <ProductDetails /> },
+        { path: "/EcommerceRoute/ProductDetails/:id", element: <ProductDetails /> },
         {
-          path: "/Cart",
+          path: "/EcommerceRoute/Cart",
           element: (
             <ProtectedRoute>
               <Cart />
@@ -63,7 +63,7 @@ export default function App() {
           ),
         },
         {
-          path: "/WishList",
+          path: "/EcommerceRoute/WishList",
           element: (
             <ProtectedRoute>
               <WishList />
@@ -71,7 +71,7 @@ export default function App() {
           ),
         },
         {
-          path: "/Payment",
+          path: "/EcommerceRoute/Payment",
           element: (
             <ProtectedRoute>
               <Payment />
