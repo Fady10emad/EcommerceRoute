@@ -29,7 +29,7 @@ export default function Cart() {
         position: "top-right",
         autoClose: 3000,
       });
-      navigate("/EcommerceRoute/products");
+      navigate("/products");
     } else {
       toast.error("❌ Failed to clear the cart.", {
         position: "top-right",
@@ -79,7 +79,7 @@ export default function Cart() {
             Clear All
           </button>
 
-         <Link to='/EcommerceRoute/Payment'> Check Out</Link>
+         <Link to='/Payment'> Check Out</Link>
 
         </div>
 
@@ -103,7 +103,7 @@ export default function Cart() {
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
               >
                 <td className="p-4">
-                  <Link to={`/EcommerceRoute/ProductDetails/${product.product._id}`}>
+                  <Link to={`/ProductDetails/${product.product._id}`}>
                     <img
                       src={product.product.imageCover}
                       className="w-20 mx-auto rounded-lg"

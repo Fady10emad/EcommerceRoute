@@ -23,14 +23,14 @@ const queryClient = new QueryClient();
 export default function App() {
   const router = createBrowserRouter([
     {
-      path: "/EcommerceRoute/",
+      path: "/",
       element: <Layout />,
       children: [
-        { path: "/EcommerceRoute/", element: <Register /> },
-        { path: "/EcommerceRoute/register", element: <Register /> },
-        { path: "/EcommerceRoute/login", element: <Login /> },
+        { path: "/", element: <Register /> },
+        { path: "/register", element: <Register /> },
+        { path: "/login", element: <Login /> },
         {
-          path: "/EcommerceRoute/products",
+          path: "/products",
           element: (
             <ProtectedRoute>
               <Products />
@@ -38,7 +38,7 @@ export default function App() {
           ),
         },
         {
-          path: "/EcommerceRoute/brands",
+          path: "/brands",
           element: (
             <ProtectedRoute>
               <Brands />
@@ -46,16 +46,16 @@ export default function App() {
           ),
         },
         {
-          path: "/EcommerceRoute/categories",
+          path: "/categories",
           element: (
             <ProtectedRoute>
               <Categories />
             </ProtectedRoute>
           ),
         },
-        { path: "/EcommerceRoute/ProductDetails/:id", element: <ProductDetails /> },
+        { path: "/ProductDetails/:id", element: <ProductDetails /> },
         {
-          path: "/EcommerceRoute/Cart",
+          path: "/Cart",
           element: (
             <ProtectedRoute>
               <Cart />
@@ -63,7 +63,7 @@ export default function App() {
           ),
         },
         {
-          path: "/EcommerceRoute/WishList",
+          path: "/WishList",
           element: (
             <ProtectedRoute>
               <WishList />
@@ -71,7 +71,7 @@ export default function App() {
           ),
         },
         {
-          path: "/EcommerceRoute/Payment",
+          path: "/Payment",
           element: (
             <ProtectedRoute>
               <Payment />
@@ -88,7 +88,7 @@ export default function App() {
         <QueryClientProvider client={queryClient}>
           <CartContextProvider>
             <WishListProvider>
-              <RouterProvider router={router}  />
+              <RouterProvider router={router} />
             </WishListProvider>
             <ToastContainer />
           </CartContextProvider>

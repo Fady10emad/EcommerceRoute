@@ -162,7 +162,7 @@ export default function Products() {
             key={item._id}
             className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg hover:shadow-green-500/50 transition-shadow duration-300"
           >
-            <Link to={`/EcommerceRoute/ProductDetails/${item._id}`}>
+            <Link to={`/ProductDetails/${item._id}`}>
               <img
                 className="rounded-t-lg h-80 object-contain w-full"
                 src={item.imageCover}
