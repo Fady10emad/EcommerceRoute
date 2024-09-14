@@ -1,5 +1,5 @@
 import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, createHashRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Components/Layout/Layout";
 import Register from "./Components/Register/Register";
 import Login from "./Components/Login/Login";
@@ -21,9 +21,9 @@ import Payment from "./Components/Payment/Payment";
 const queryClient = new QueryClient();
 
 export default function App() {
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
-      path: "/EcommerceRoute/",
+      path: "/",
       element: <Layout />,
       children: [
         { path: "/", element: <Register /> },
