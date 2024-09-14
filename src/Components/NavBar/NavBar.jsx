@@ -15,7 +15,7 @@ export default function NavBar() {
   
     setToken(null);
     localStorage.removeItem('tkn');
-    navigate('/Login');
+    navigate('/EcommerceRoute/Login');
   }
 
 
