@@ -23,7 +23,7 @@ const queryClient = new QueryClient();
 export default function App() {
   const router = createBrowserRouter([
     {
-      path: "/EcommerceRoute/",
+      path: "/",
       element: <Layout />,
       children: [
         { path: "/", element: <Register /> },
