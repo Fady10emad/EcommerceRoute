@@ -23,7 +23,7 @@ const queryClient = new QueryClient();
 export default function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      index: true,
       element: <Layout />,
       children: [
         { path: "/", element: <Register /> },
@@ -88,7 +88,7 @@ export default function App() {
         <QueryClientProvider client={queryClient}>
           <CartContextProvider>
             <WishListProvider>
-              <RouterProvider router={router} />
+              <RouterProvider router={router}  />
             </WishListProvider>
             <ToastContainer />
           </CartContextProvider>
