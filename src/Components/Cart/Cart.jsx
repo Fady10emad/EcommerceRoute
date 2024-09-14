@@ -65,23 +65,28 @@ export default function Cart() {
       )}
       
       <div className="overflow-x-auto shadow-md sm:rounded-lg w-10/12 my-10 mx-auto">
-        <div className="flex justify-center gap-5 mb-5">
-          <h1 className="bg-green-500 text-center text-white w-fit p-3 rounded-lg">
-            Total Price: {TotalPrice} EGP
-          </h1>
-          <h1 className="bg-green-500 text-center text-white w-fit p-3 rounded-lg">
-            Total Items: {AllNumberOfItems}
-          </h1>
-          <button
-            onClick={handleClearing}
-            className="bg-red-800 text-center text-white w-fit p-3 rounded-lg"
-          >
-            Clear All
-          </button>
+      <div className="flex justify-center gap-5 mb-5">
+  <h1 className="bg-green-500 text-center text-white w-fit p-3 rounded-lg">
+    Total Price: {TotalPrice} EGP
+  </h1>
+  <h1 className="bg-green-500 text-center text-white w-fit p-3 rounded-lg">
+    Total Items: {AllNumberOfItems}
+  </h1>
+  <button
+    onClick={handleClearing}
+    className="bg-red-800 text-center text-white w-fit p-3 rounded-lg"
+  >
+    Clear All
+  </button>
 
-         <Link to='/Payment'> Check Out</Link>
+  <Link
+    to="/Payment"
+    className="bg-blue-500 text-center text-white w-fit p-3 rounded-lg hover:bg-blue-600 transition"
+  >
+    Check Out
+  </Link>
+</div>
 
-        </div>
 
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
