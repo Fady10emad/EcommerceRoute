@@ -8,7 +8,7 @@ export default function WishList() {
   const { WishListData, DeleteFromWishList } = useContext(WishListContext);
   const { AddPorductToCart } = useContext(CartContext);
 
-  const [loading, setLoading] = useState(false); // Global loading state
+  const [loading, setLoading] = useState(false); 
 
   async function handleAddToCart(id) {
     setLoading(true); // Start full-screen loading
