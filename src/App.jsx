@@ -21,9 +21,9 @@ import Payment from "./Components/Payment/Payment";
 const queryClient = new QueryClient();
 
 export default function App() {
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
-      path: "",
+      path: "/",
       element: <Layout />,
       children: [
         { path: "/", element: <Register /> },
