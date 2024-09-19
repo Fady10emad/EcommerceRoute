@@ -65,7 +65,8 @@ export default function Login() {
   });
 
   return (
-    <form
+<div className="mx-4">
+<form
       onSubmit={loginFormik.handleSubmit}
       className="max-w-md mx-auto my-20"
     >
@@ -157,5 +158,6 @@ export default function Login() {
         )}
       </button>
     </form>
+</div>
   );
 }
