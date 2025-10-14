@@ -2,41 +2,31 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <>
-<footer className="bg-white rounded-lg shadow m-4 dark:bg-gray-800">
-  <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-    <span className="text-lg text-gray-500 sm:text-center dark:text-gray-400">
-      © 2023{" "}
-      <a href="https://flowbite.com/" className="hover:underline">
-        Flowbite™
-      </a>
-      . All Rights Reserved.
-    </span>
-    <ul className="flex flex-wrap items-center mt-3 text-lg font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-      <li>
-        <a href="#" className="hover:underline me-4 md:me-6">
-          About
-        </a>
-      </li>
-      <li>
-        <a href="#" className="hover:underline me-4 md:me-6">
-          Privacy Policy
-        </a>
-      </li>
-      <li>
-        <a href="#" className="hover:underline me-4 md:me-6">
-          Licensing
-        </a>
-      </li>
-      <li>
-        <a href="#" className="hover:underline">
-          Contact
-        </a>
-      </li>
-    </ul>
-  </div>
-</footer>
-
-    </>
+    <footer className="mt-10 border-t border-surface-200 dark:border-surface-700 bg-white/80 dark:bg-surface-800/80 backdrop-blur">
+      <div className="container py-8 flex flex-col md:flex-row gap-6 md:items-center md:justify-between">
+        <div className="flex flex-col gap-2">
+          <span className="text-sm text-surface-600 dark:text-surface-300">
+            © {new Date().getFullYear()} FreshCart. All rights reserved.
+          </span>
+          <p className="text-xs text-surface-500">
+            Built with React & Tailwind CSS.
+          </p>
+        </div>
+        <nav className="flex flex-wrap gap-4 text-sm font-medium text-surface-600 dark:text-surface-300">
+          <a href="#" className="hover:text-brand-600 transition">
+            About
+          </a>
+          <a href="#" className="hover:text-brand-600 transition">
+            Privacy
+          </a>
+          <a href="#" className="hover:text-brand-600 transition">
+            Licensing
+          </a>
+          <a href="#" className="hover:text-brand-600 transition">
+            Contact
+          </a>
+        </nav>
+      </div>
+    </footer>
   );
 }

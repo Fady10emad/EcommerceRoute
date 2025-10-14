@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { WishListContext } from "../../context/WishListProvider";
 import { CartContext } from "../../context/CartContextProvider";
 import { toast } from "react-toastify";
-import { FallingLines } from "react-loader-spinner";
+import { SectionContainer, Card, Button } from "../UI";
 
 export default function WishList() {
   const { WishListData, DeleteFromWishList } = useContext(WishListContext);
@@ -45,59 +45,64 @@ export default function WishList() {
   }
 
   return (
-    <div className="relative">
+    <SectionContainer
+      title="Your Wishlist"
+      subtitle="Items you've saved for later"
+    >
       {loading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <FallingLines color="#fff" width="100" visible={true} />
+        <div className="fixed inset-0 bg-surface-900/60 backdrop-blur-sm z-50 flex justify-center items-center">
+          <div
+            className="animate-spin rounded-full h-12 w-12 border-2 border-brand-600 border-t-transparent"
+            aria-label="loading"
+          />
         </div>
       )}
-
-      <div className="max-w-4xl mx-auto p-6">
-        <h1 className="text-2xl font-bold mb-4 text-center md:text-left">
-          Your Wishlist
-        </h1>
-        <div className="bg-white shadow-md rounded-lg p-4">
-          {(!WishListData || WishListData.length === 0) ? (
-            <p className="text-center text-gray-500">
-              Your wishlist is empty.
-            </p>
-          ) : (
-            <ul>
-              {WishListData.map((item) => (
-                <li
-                  key={item.id}
-                  className="flex flex-col md:flex-row items-center md:items-start border-b py-4 space-y-4 md:space-y-0"
-                >
+      <Card className="p-6">
+        {!WishListData || WishListData.length === 0 ? (
+          <p className="text-center text-surface-500">
+            Your wishlist is empty.
+          </p>
+        ) : (
+          <ul className="space-y-6">
+            {WishListData.map((item) => (
+              <li
+                key={item._id}
+                className="flex flex-col md:flex-row md:items-center gap-5 border-b pb-6 last:border-b-0"
+              >
+                <div className="w-full md:w-32 h-32 flex items-center justify-center bg-surface-100 rounded-lg overflow-hidden">
                   <img
                     src={item.imageCover}
                     alt={item.name}
-                    className="w-24 h-24 object-cover mr-0 md:mr-4"
+                    className="object-contain h-full w-full"
                   />
-                  <div className="flex-1 text-center md:text-left">
-                    <h2 className="text-xl font-semibold">{item.title}</h2>
-                    <p className="text-green-500 my-5">{item.price} EGP</p>
-
-                    <button
+                </div>
+                <div className="flex-1">
+                  <h2 className="text-lg font-semibold mb-2">{item.title}</h2>
+                  <p className="text-brand-600 font-bold mb-3">
+                    {item.price} EGP
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <Button
+                      variant="danger"
+                      size="sm"
                       onClick={() => handleRemoveFromWishlist(item._id)}
-                      className="bg-red-500 text-white px-4 py-2 rounded-lg mb-4"
                     >
-                      <i className="fa-solid fa-trash me-2"></i>
-                      Remove from Wishlist
-                    </button>
+                      <i className="fa-solid fa-trash mr-2" /> Remove
+                    </Button>
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      onClick={() => handleAddToCart(item._id)}
+                    >
+                      Add to Cart
+                    </Button>
                   </div>
-
-                  <button
-                    onClick={() => handleAddToCart(item._id)}
-                    className="bg-blue-500 text-white px-4 py-2 rounded-lg w-full md:w-auto"
-                  >
-                    Add to Cart
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      </div>
-    </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </Card>
+    </SectionContainer>
   );
 }

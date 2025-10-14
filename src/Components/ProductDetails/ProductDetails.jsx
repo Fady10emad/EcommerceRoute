@@ -1,17 +1,17 @@
-import axios from 'axios';
-import React, { useContext, useState, useEffect } from 'react';
-import { FallingLines } from 'react-loader-spinner';
-import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
-import { CartContext } from '../../context/CartContextProvider';
-import { WishListContext } from '../../context/WishListProvider';
-import { toast } from 'react-toastify';
+import axios from "axios";
+import React, { useContext, useState, useEffect } from "react";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
+import { CartContext } from "../../context/CartContextProvider";
+import { WishListContext } from "../../context/WishListProvider";
+import { toast } from "react-toastify";
+import { Card, Button, SectionContainer, ProductCardSkeleton } from "../UI";
 
 export default function ProductDetails() {
-
   const { AddPorductToCart } = useContext(CartContext);
-  const { AddToWishList, DeleteFromWishList, WishListData } = useContext(WishListContext);
-  
+  const { AddToWishList, DeleteFromWishList, WishListData } =
+    useContext(WishListContext);
+
   const [likedProducts, setLikedProducts] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loadingWishlist, setLoadingWishlist] = useState(false); // loading state for wishlist
@@ -80,7 +80,7 @@ export default function ProductDetails() {
   }
 
   const { data, isError, isLoading } = useQuery({
-    queryKey: ['ProductDetails', id],
+    queryKey: ["ProductDetails", id],
     queryFn: ProductDetailsFunc,
   });
 
@@ -94,66 +94,80 @@ export default function ProductDetails() {
 
   if (isLoading) {
     return (
-      <div className="h-screen bg-blue-300 flex justify-center items-center">
-        <FallingLines
-          color="#fff"
-          width="100"
-          visible={true}
-          ariaLabel="falling-circles-loading"
-        />
-      </div>
+      <SectionContainer title="Loading product" subtitle="Fetching details...">
+        <ProductCardSkeleton />
+      </SectionContainer>
     );
   }
 
   const product = data.data.data;
 
   return (
-    <div className="container mx-auto py-10">
-      <div className="flex flex-col items-center md:flex-row bg-white rounded-lg shadow-lg p-5 shadow-green-500/50">
-        <div className="md:w-1/2 p-5">
-          <img
-            src={product.imageCover}
-            alt={product.title}
-            className="w-6/12 mx-auto rounded-lg"
-          />
-        </div>
-        <div className="md:w-1/2 p-5">
-          <h1 className="text-3xl font-bold mb-5">{product.title}</h1>
-          <h2 className="text-xl text-gray-700 mb-5">{product.category.name}</h2>
-          <p className="text-gray-600 mb-5">{product.description}</p>
-          <p className="text-2xl font-semibold mb-5">
-            {product.priceAfterDiscount ? (
-              <>
-                <span className="line-through text-red-700">{product.price} EGP</span>
-                <span className="ml-3 text-green-600">{product.priceAfterDiscount} EGP</span>
-              </>
-            ) : (
-              <span>{product.price} EGP</span>
-            )}
-          </p>
-          <p className="text-yellow-500 mb-5">
-            <i className="fa-solid fa-star"></i> {product.ratingsAverage} Rating
-          </p>
-          <div className="flex justify-between items-center">
-            <button
-              onClick={() => handleAddToCart(product._id)}
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg"
-            >
-              {loading ? "Adding..." : "Add to Cart"}
-            </button>
-            <i
-              className={`fa-${
-                likedProducts ? "solid" : "regular"
-              } fa-heart text-3xl cursor-pointer transition-colors duration-300 hover:text-red-500 ${
-                likedProducts ? "text-red-500" : "text-gray-500"
-              }`}
-              onClick={() => handleToggleWishList(product._id)}
-              aria-hidden="true"
-            ></i>
-            {/* {loadingWishlist && <span className="ml-2">Loading...</span>} */}
+    <SectionContainer title={product.title} subtitle={product.category.name}>
+      <Card className="grid md:grid-cols-2 gap-10" padding="lg">
+        <div className="flex items-start justify-center">
+          <div className="w-full max-w-md aspect-square bg-surface-100 rounded-xl overflow-hidden flex items-center justify-center">
+            <img
+              src={product.imageCover}
+              alt={product.title}
+              className="object-contain w-full h-full"
+            />
           </div>
         </div>
-      </div>
-    </div>
+        <div className="flex flex-col">
+          <p className="text-sm text-surface-600 mb-4 leading-relaxed">
+            {product.description}
+          </p>
+          <div className="mb-6">
+            {product.priceAfterDiscount ? (
+              <div className="flex items-baseline gap-3">
+                <span className="text-lg font-medium line-through text-red-600">
+                  {product.price} EGP
+                </span>
+                <span className="text-2xl font-bold text-brand-600">
+                  {product.priceAfterDiscount} EGP
+                </span>
+              </div>
+            ) : (
+              <span className="text-2xl font-bold text-brand-600">
+                {product.price} EGP
+              </span>
+            )}
+          </div>
+          <div className="flex items-center gap-2 text-yellow-500 mb-6">
+            <i className="fa-solid fa-star" aria-hidden="true"></i>
+            <span className="text-sm font-medium">
+              {product.ratingsAverage} Rating
+            </span>
+          </div>
+          <div className="flex gap-3">
+            <Button
+              variant="primary"
+              onClick={() => handleAddToCart(product._id)}
+              disabled={loading}
+            >
+              {loading ? "Adding..." : "Add to Cart"}
+            </Button>
+            <button
+              aria-label={
+                likedProducts ? "Remove from wishlist" : "Add to wishlist"
+              }
+              onClick={() => handleToggleWishList(product._id)}
+              className={`h-11 w-11 inline-flex items-center justify-center rounded-md border transition-colors ${
+                likedProducts
+                  ? "border-red-400 bg-red-50 text-red-600"
+                  : "border-surface-300 hover:bg-surface-100 text-surface-600"
+              }`}
+            >
+              <i
+                className={`fa-${
+                  likedProducts ? "solid" : "regular"
+                } fa-heart text-lg`}
+              />
+            </button>
+          </div>
+        </div>
+      </Card>
+    </SectionContainer>
   );
 }
